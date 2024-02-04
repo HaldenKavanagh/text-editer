@@ -11,9 +11,11 @@ precacheAndRoute(self.__WB_MANIFEST);
 const pageCache = new CacheFirst({
   cacheName: "page-cache",
   plugins: [
+    // ensures only successfull responses are cached, status 200.
     new CacheableResponsePlugin({
       statuses: [0, 200],
     }),
+    //  sets a max age for items in the cache. 30 days
     new ExpirationPlugin({
       maxAgeSeconds: 30 * 24 * 60 * 60,
     }),
